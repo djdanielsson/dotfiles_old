@@ -1,6 +1,6 @@
 # dotfiles
 
-##useful commands to remember
+## useful commands to remember
 
 how to connect to wifi network
 ```
