@@ -109,5 +109,5 @@ set number " always show the line nubmers
 set relativenumber " relative line numbering.
 "set textwidth=80 " Fix the column width to 80 characters
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR> "Remove all trailing whitespace by pressing F5
-nnoremap <F4> mzgg=G`z "fix indentation
+nnoremap <F4> mzgg=G`z
 
