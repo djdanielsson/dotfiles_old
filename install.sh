@@ -55,7 +55,7 @@ if ! [ -d ~/workspace ]; then
   mkdir -p ~/workspace
 fi
 if ! [ -d ~/workspace/dotfiles ]; then
-  git clone https://github.com/tmccisdj/dotfiles.git ~/workspace/dotfiles
+  git clone https://github.com/djdanielsson/dotfiles.git ~/workspace/dotfiles
 fi
 
 echo -e "${BLUE}setting fonts for vim${NC}"
