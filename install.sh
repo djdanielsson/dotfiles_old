@@ -71,13 +71,13 @@ echo -e "${BLUE}adding other repositories and installing applications${NC}"
 if [ $OS == fedora ]; then
   su -c 'dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm dnf-plugins-core'
   su -c 'dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo'
-  su -c 'dnf config-manager --add-repo https://copr.fedorainfracloud.org/coprs/yaroslav/i3desktop/repo/fedora-25/yaroslav-i3desktop-fedora-25.repo'
+  su -c 'dnf config-manager --add-repo https://copr.fedorainfracloud.org/coprs/yaroslav/i3desktop/repo/fedora-$(rpm -E %fedora)/yaroslav-i3desktop-fedora-$(rpm -E %fedora).repo'
   su -c 'dnf config-manager --add-repo https://copr.fedorainfracloud.org/coprs/pkajaba/i3blocks/repo/fedora-24/pkajaba-i3blocks-fedora-24.repo'
   su -c 'dnf config-manager --enable docker-ce-edge'
-  su -c 'dnf config-manager --enable yaroslav/i3desktop-fedora-25'
+  su -c 'dnf config-manager --enable yaroslav/i3desktop-fedora-$(rpm -E %fedora)'
   su -c 'dnf config-manager --enable pkajaba/i3blocks-fedora-24'
   su -c 'dnf clean all'
-  su -c 'dnf install -y i3blocks acpi i3lock xautolock rofi emacs ruby python firefox gnome-terminal tpl powertop docker-ce xbacklight'
+  su -c 'dnf install -y i3blocks acpi i3lock xautolock rofi emacs ruby python firefox gnome-terminal powertop docker-ce xbacklight'
 fi
 
 echo -e "${BLUE}setting up vim and addons${NC}"
@@ -96,7 +96,7 @@ if ! [ -h ~/.vimrc ]; then
 fi
 if ! [ -h ~/.bashrc ]; then
   rm ~/.bashrc 2> /dev/null
-  git@github.com:djdanielsson/dotfiles.git  ln -s ~/workspace/dotfiles/.bashrc ~/
+  ln -s ~/workspace/dotfiles/.bashrc ~/
 fi
 if ! [ -h ~/.i3/config ]; then
   if [ $OS == "arch" ]; then
