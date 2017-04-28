@@ -56,16 +56,14 @@ let g:syntastic_check_on_wq = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
-" "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" " Function: NumberToggle
-" " Function to toggle relative line numbering.
-" " function stolen from:
-" "
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Function: NumberToggle
+" Function to toggle relative line numbering. 
+" function stolen from:
+" 
 " http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
-" " Slightly modified because their example didn't do what I wanted.
-" " On my laptop it moves my cursor by one... Not sure why. At work it doesn't
-" do
-" " this.
+" Slightly modified because their example didn't do what I wanted.
+" On my laptop it moves my cursor by one... Not sure why. At work it doesn't do this.
 function! NumberToggle()
 	if(&relativenumber == 1)
 		set norelativenumber
@@ -81,17 +79,14 @@ let g:Powerline_symbols = 'unicode'
 let g:Powerline_theme = 'default'
 let g:Powerline_stl_path_style = 'short'
 let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-let g:Powerline_colorscheme = 'solarized256'
-
-set encoding=utf-8
+let g:Powerline_colorscheme = 'solarized256_dark'
 let g:airline_powerline_fonts = 1
-" Solarized colorsheme without the sea of cyan
+let g:airline_theme = 'badwolf'
 let g:solarized_termcolors=256
 syntax enable
 set background=dark
-set t_Co=256
 colorscheme solarized
-
+set t_Co=256
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 set whichwrap+=<,>,h,l,[,] " wraps around when using arrow keys
@@ -110,5 +105,5 @@ set relativenumber " relative line numbering.
 "set textwidth=80 " Fix the column width to 80 characters
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR> "Remove all trailing whitespace by pressing F5
 nnoremap <F4> mzgg=G`z
-cmap W w
-
+cmap W  w
+cmap Q  q
