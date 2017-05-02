@@ -87,6 +87,8 @@ fi
 vim +PluginInstall +qall
 
 echo -e "${BLUE}setting configuration files${NC}"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 if ! [ -e ~/.i3 ]; then
   mkdir -p ~/.i3
 fi
@@ -130,6 +132,16 @@ fi
 if ! [ -h ~/.config/dconf/user ]; then
   rm ~/.config/dconf/user 2> /dev/null
   ln -s ~/workspace/dotfiles/user ~/.config/dconf/
+fi
+
+if ! [ -h ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim ]; then
+  rm ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim 2> /dev/null
+  ln -s ~/workspace/dotfiles/solarized.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim
+fi
+
+if ! [ -h ~/.zsh ]; then
+  rm ~/.zsh 2> /dev/null
+  ln -s ~/workspace/dotfiles/.zsh ~/
 fi
 
 #echo "adding docker so it can be used without sudo"

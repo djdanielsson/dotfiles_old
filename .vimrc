@@ -81,8 +81,7 @@ let g:Powerline_stl_path_style = 'short'
 let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 let g:Powerline_colorscheme = 'solarized256_dark'
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'badwolf'
-let g:solarized_termcolors=256
+let g:airline_theme = 'solarized'
 syntax enable
 set background=dark
 colorscheme solarized
