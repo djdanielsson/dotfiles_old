@@ -77,7 +77,7 @@ if [ $OS == fedora ]; then
   su -c 'dnf config-manager --enable yaroslav/i3desktop-fedora-$(rpm -E %fedora)'
   su -c 'dnf config-manager --enable pkajaba/i3blocks-fedora-24'
   su -c 'dnf clean all'
-  su -c 'dnf install -y i3blocks acpi i3lock xautolock rofi emacs ruby python firefox gnome-terminal powertop docker-ce xbacklight'
+  su -c 'dnf install -y i3blocks acpi i3lock xautolock rofi emacs ruby python firefox gnome-terminal powertop docker-ce xbacklight zsh'
 fi
 
 echo -e "${BLUE}setting up vim and addons${NC}"

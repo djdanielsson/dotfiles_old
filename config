@@ -30,7 +30,6 @@ bindsym $mod+l exec i3lock -e -f -I10 -i ~/.i3/lock.png && echo mem > /sys/power
 
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -i /home/welcome/pic/1.png -I' && echo mem > /sys/power/state
 
-# network
 bindsym $mod+Shift+q kill
 
 # keyboard settings to control volume on chromebook
@@ -158,6 +157,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 bar {
+  wheel_up_cmd nop
+  wheel_down_cmd nop
+  bindsym button1 nop
+  bindsym button2 nop
   font pango:Source Sans Pro-10 10
   status_command i3blocks -c ~/.i3/i3blocks.conf
   position top
