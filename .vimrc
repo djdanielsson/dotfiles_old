@@ -106,3 +106,7 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR> "Remove all tr
 nnoremap <F4> mzgg=G`z
 cmap W  w
 cmap Q  q
+cmap w!! execute 'silent w !sudo tee > /dev/null %' \| edit!
+cmap wq!! execute 'silent w !sudo tee > /dev/null %' \| q!
+
+
