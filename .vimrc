@@ -84,7 +84,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 syntax enable
 set background=dark
-colorscheme solarized
+silent! colorscheme solarized
 set t_Co=256
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
