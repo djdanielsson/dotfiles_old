@@ -144,6 +144,8 @@ if ! [ -h ~/.zsh ]; then
   ln -s ~/workspace/dotfiles/.zsh ~/
 fi
 
+su -c "sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf"
+
 #echo "adding docker so it can be used without sudo"
 #sudo groupadd docker
 #sudo gpasswd -a ${USER} docker

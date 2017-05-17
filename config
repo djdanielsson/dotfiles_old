@@ -37,6 +37,8 @@ bindsym $mod+F8 exec amixer sset Master Playback Volume 0% &> /dev/null
 bindsym $mod+F9 exec amixer sset Master Playback Volume 5%- &> /dev/null
 bindsym $mod+F10 exec amixer sset Master Playback Volume 5%+ &> /dev/null
 
+bindsym $mod+XF86PowerOff exec poweroff
+
 # brightness control
 bindsym $mod+F6 exec xbacklight -dec 10%
 bindsym $mod+F7 exec xbacklight -inc 10%

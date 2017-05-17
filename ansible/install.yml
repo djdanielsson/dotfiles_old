@@ -7,10 +7,10 @@
   roles:
     - base
 
-      #- name: configure and deploy the webservers and application code
-      #hosts: webservers
-      #remote_user: root
+- name: configure and deploy the webservers and application code
+  hosts: chromebook
+  remote_user: root
 
-      #roles:
-      #- web
+  roles:
+  - chromebook
 

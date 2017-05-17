@@ -1,0 +1,13 @@
+---
+- name: disabling power button
+  lineinfile:
+    #    path: /etc/systemd/logind.conf
+    dest: /etc/systemd/logind.conf
+    regexp: '^(?i)HandlePowerKey=poweroff'
+    insertafter: '^#(?i)HandlePowerKey=poweroff'
+    line: 'HandlePowerKey=ignore'
+    backup: yes
+
+
+
+
