@@ -1,0 +1,16 @@
+---
+
+- name: install base configuration
+  hosts: all
+  remote_user: root
+
+  roles:
+    - base
+
+      #- name: configure and deploy the webservers and application code
+      #hosts: webservers
+      #remote_user: root
+
+      #roles:
+      #- web
+

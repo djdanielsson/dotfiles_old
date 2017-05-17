@@ -1,0 +1,101 @@
+---
+- name: Add docker repository
+  get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: 0644
+
+#- name: Add docker repository
+  #yum_repository:
+    #name: docker-ce
+    #description: Official docker repo
+    #baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
+
+- name: install dnf-plugins-core required for rpmfusion
+  package:
+    name: dnf-plugins-core
+    state: latest
+
+- name: install rpmfusion free
+  dnf:
+    name: "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+
+- name: install rpmfusion non-free
+  dnf:
+    name: 'http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+    state: present
+
+- name: Add yaroslav i3desktop repository
+  get_url:
+    url: https://copr.fedorainfracloud.org/coprs/yaroslav/i3desktop/repo/fedora-{{ ansible_distribution_major_version }}/yaroslav-i3desktop-fedora-{{ ansible_distribution_major_version }}.repo
+    dest: /etc/yum.repos.d/yaroslav-i3desktop-fedora-{{ ansible_distribution_major_version }}.repo
+    mode: 0644
+
+    #- name: Add yaroslav i3desktop repository
+    #yum_repository:
+    #name: yarslav
+    #description: yaroslav i3desktop
+    #baseurl: https://copr.fedorainfracloud.org/coprs/yaroslav/i3desktop/repo/fedora-{{ ansible_distribution_major_version }}/yaroslav-i3desktop-fedora-{{ ansible_distribution_major_version }}.repo
+
+- name: Add pkajaba i3blocks repository
+  get_url:
+    url: https://copr.fedorainfracloud.org/coprs/pkajaba/i3blocks/repo/fedora-24/pkajaba-i3blocks-fedora-24.repo
+    dest: /etc/yum.repos.d/pkajaba-i3blocks-fedora-24.repo
+    mode: 0644
+
+    #- name: Add pkajaba i3blocks repository
+    #yum_repository:
+    #name: pkajaba
+    #description: pkajaba i3blocks
+    #baseurl: https://copr.fedorainfracloud.org/coprs/pkajaba/i3blocks/repo/fedora-24/pkajaba-i3blocks-fedora-24.repo
+
+- name: Add opera browser repository
+  yum_repository:
+    name: opera
+    description: opera browser
+    baseurl: https://rpm.opera.com/rpm
+    gpgkey: https://rpm.opera.com/rpmrepo.key
+    gpgcheck: yes
+
+- name: Add google chrome browser repository
+  yum_repository:
+    name: google-chrome
+    description: google chrome browser
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+    gpgcheck: yes
+
+- name: upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
+
+- name: install the latest version of i3blocks
+  package:
+    name: i3blocks
+    state: latest
+
+- name: install the latest version of i3lock
+  package:
+    name: i3lock
+    state: latest
+
+- name: install the latest version of rofi
+  package:
+    name: rofi
+    state: latest
+
+- name: install the latest version of docker-ce
+  package:
+    name: docker-ce
+    state: latest
+
+    #- name: remove the vim-minimal
+    #dnf:
+    #name: vim-minimal
+    #state: absent
+    #autoremove: no
+
+
+
