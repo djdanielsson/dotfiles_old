@@ -34,9 +34,9 @@ export PS1='\[\e[1;34m\]\u\[\e[1;36m\]@\[\e[1;31m\]\h:\[\e[1;36m\]\w:\[\e[1;37m\
 #export PS1='\u@\h\w:$ '
 alias ls="ls --color"
 alias ll="ls -l"
+alias llz="ls -laZh"
 alias vi="vim"
 alias emacs="emacs -nw"
 alias minecraft="java -jar ~/Downloads/Minecraft.jar"
 alias cleanMem="su -c 'sync; echo 1 > /proc/sys/vm/drop_caches; echo 2 > /proc/sys/vm/drop_caches; echo 3 > /proc/sys/vm/drop_caches'"
-
 

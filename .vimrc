@@ -58,19 +58,19 @@ let g:syntastic_check_on_wq = 0
 " Functions
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Function: NumberToggle
-" Function to toggle relative line numbering. 
+" Function to toggle relative line numbering.
 " function stolen from:
-" 
+"
 " http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
 " Slightly modified because their example didn't do what I wanted.
 " On my laptop it moves my cursor by one... Not sure why. At work it doesn't do this.
 function! NumberToggle()
-	if(&relativenumber == 1)
-		set norelativenumber
-		set number
-	else
-		set relativenumber
-	endif
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
 endfunc
 
 " Always show statusline
