@@ -92,14 +92,14 @@ set whichwrap+=<,>,h,l,[,] " wraps around when using arrow keys
 set nowrap " Do not wrap text
 set expandtab " Insert spaces instead of tabs
 set tabstop=2 " Set the number of spaces to 2
-set autoindent "always set autoindenting on
+set autoindent "always set auto-indenting on
 set shiftwidth=2 " number of spaces to use for auto indenting
-set showmatch " show mathchning parens
+set showmatch " show matching parens
 set hlsearch " highlight search terms
 set incsearch " show search matches as you type
 set cursorline " highlights current line
 set cursorcolumn " highlights current column
-set number " always show the line nubmers
+set number " always show the line numbers
 set relativenumber " relative line numbering.
 "set textwidth=80 " Fix the column width to 80 characters
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR> "Remove all trailing whitespace by pressing F5
@@ -108,5 +108,22 @@ cmap W  w
 cmap Q  q
 cmap w!! execute 'silent w !sudo tee > /dev/null %' \| edit!
 cmap wq!! execute 'silent w !sudo tee > /dev/null %' \| q!
+
+"new stuff to try out
+set history=2000
+set spell
+set undofile
+set undolevels=1000
+set undoreload=10000
+color solarized
+highlight clear SignColumn
+highlight clear LineNr
+set backspace=indent,eol,start
+set linespace=0
+set ignorecase
+set smartcase
+set scrolloff=3
+set softtabstop=2
+
 
 

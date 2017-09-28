@@ -49,19 +49,19 @@
 
 - name: creating workspace
   file:
-    path: ~/workspace
+    path: /home/welcome/workspace
     state: directory
     mode: 0750
 
 - name: git pull dotfiles
   git:
     repo: 'https://github.com/djdanielsson/dotfiles.git'
-    dest: ~/workspace/dotfiles
+    dest: /home/welcome/workspace/dotfiles
     update: no
 
 - name: create .local/share folder
   file:
-    path: ~/.local/share/
+    path: /home/welcome/.local/share/
     state: directory
     mode: 0750
 
@@ -70,55 +70,55 @@
 - name: git pull Vundle
   git:
     repo: 'https://github.com/gmarik/Vundle.vim.git'
-    dest: ~/.vim/bundle/Vundle.vim
+    dest: /home/welcome/.vim/bundle/Vundle.vim
 
 - name: checking to see if oh-my-zsh is already installed
   stat:
-    path: ~/.oh-my-zsh
+    path: /home/welcome/.oh-my-zsh
   register: DLohmyzsh
 
 - name: downloading the installer for oh-my-zsh
   get_url:
     url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-    dest: ~/ohmyzsh.sh
+    dest: /home/welcome/ohmyzsh.sh
     mode: 0750
   when: DLohmyzsh.stat.islnk is not defined
 
 - name: checking for oh-my-zsh installer
   stat:
-    path: ~/ohmyzsh.sh
+    path: /home/welcome/ohmyzsh.sh
   register: ohmyzsh
 
 - name: Installing oh-my-zsh
-  command: /usr/bin/bash ~/ohmyzsh.sh
+  command: /usr/bin/bash /home/welcome/ohmyzsh.sh
   when: ohmyzsh.stat.islnk is defined
 
 - name: removing oh-my-zsh installer
   file:
-    path: ~/ohmyzsh.sh
+    path: /home/welcome/ohmyzsh.sh
     state: absent
 
 - name: create .i3 folder
   file:
-    path: ~/.i3
+    path: /home/welcome/.i3
     state: directory
     mode: 0750
 
 - name: checking for .vimrc
   stat:
-    path: ~/.vimrc
+    path: /home/welcome/.vimrc
   register: vimrc
 
 - name: making sure .vimrc is symlink
   file:
-    path: ~/.vimrc
+    path: /home/welcome/.vimrc
     state: absent
   when: vimrc.stat.islnk is defined and vimrc.stat.islnk == False
 
 - name: creating symlink .vimrc
   file:
-    src: ~/workspace/dotfiles/.vimrc
-    dest: ~/.vimrc
+    src: /home/welcome/workspace/dotfiles/.vimrc
+    dest: /home/welcome/.vimrc
     state: link
 
 - name: Run the vim command to install/update plugins
@@ -128,116 +128,116 @@
 
 - name: checking for .bashrc
   stat:
-    path: ~/.bashrc
+    path: /home/welcome/.bashrc
   register: bashrc
 
 - name: making sure .bashrc is symlink
   file:
-    path: ~/.bashrc
+    path: /home/welcome/.bashrc
     state: absent
   when: bashrc.stat.islnk is defined and bashrc.stat.islnk == False
 
 - name: creating symlink .bashrc
   file:
-    src: ~/workspace/dotfiles/.bashrc
-    dest: ~/.bashrc
+    src: /home/welcome/workspace/dotfiles/.bashrc
+    dest: /home/welcome/.bashrc
     state: link
 
 - name: checking for i3 config
   stat:
-    path: ~/.i3/config
+    path: /home/welcome/.i3/config
   register: i3config
 
 - name: making sure i3 config is symlink
   file:
-    path: ~/.i3/config
+    path: /home/welcome/.i3/config
     state: absent
   when: i3config.stat.islnk is defined and i3config.stat.islnk == False
 
 - name: creating symlink i3 config
   file:
-    src: ~/workspace/dotfiles/config
-    dest: ~/.i3/config
+    src: /home/welcome/workspace/dotfiles/config
+    dest: /home/welcome/.i3/config
     state: link
 
 - name: checking for i3 IconicWeather.sh
   stat:
-    path: ~/.i3/IconicWeather.sh
+    path: /home/welcome/.i3/IconicWeather.sh
   register: i3weather
 
 - name: making sure i3 IconicWeather.sh is symlink
   file:
-    path: ~/.i3/IconicWeather.sh
+    path: /home/welcome/.i3/IconicWeather.sh
     state: absent
   when: i3weather.stat.islnk is defined and i3weather.stat.islnk == False
 
 - name: creating symlink IconicWeather.sh
   file:
-    src: ~/workspace/dotfiles/IconicWeather.sh
-    dest: ~/.i3/IconicWeather.sh
+    src: /home/welcome/workspace/dotfiles/IconicWeather.sh
+    dest: /home/welcome/.i3/IconicWeather.sh
     state: link
 
 - name: checking for i3blocks.conf
   stat:
-    path: ~/.i3/i3blocks.conf
+    path: /home/welcome/.i3/i3blocks.conf
   register: i3blocks
 
 - name: making sure i3blocks.conf is symlink
   file:
-    path: ~/.i3/i3blocks.conf
+    path: /home/welcome/.i3/i3blocks.conf
     state: absent
   when: i3blocks.stat.islnk is defined and i3blocks.stat.islnk == False
 
 - name: creating symlink i3blocks.conf
   file:
-    src: ~/workspace/dotfiles/i3blocks.conf
-    dest: ~/.i3/i3blocks.conf
+    src: /home/welcome/workspace/dotfiles/i3blocks.conf
+    dest: /home/welcome/.i3/i3blocks.conf
     state: link
 
 - name: creating .config/dconf folder
   file:
-    path: ~/.config/dconf/
+    path: /home/welcome/.config/dconf/
     state: directory
     mode: 0750
 
 - name: checking for gnome terminal settings
   stat:
-    path: ~/.config/dconf/user
+    path: /home/welcome/.config/dconf/user
   register: GTuser
 
 - name: making sure gnome terminal settings are set as symlink
   file:
-    path: ~/.config/dconf/user
+    path: /home/welcome/.config/dconf/user
     state: absent
   when: GTuser.stat.islnk is defined and GTuser.stat.islnk == False
 
 - name: creating symlink user (gnome-terminal settings)
   file:
-    src: ~/workspace/dotfiles/user
-    dest: ~/.config/dconf/user
+    src: /home/welcome/workspace/dotfiles/user
+    dest: /home/welcome/.config/dconf/user
     state: link
 
 - name: checking for .zshrc
   stat:
-    path: ~/.zshrc
+    path: /home/welcome/.zshrc
   register: zshrc
 
 - name: making sure .zshrc is symlink
   file:
-    path: ~/.zshrc
+    path: /home/welcome/.zshrc
     state: absent
   when: zshrc.stat.islnk is defined and zshrc.stat.islnk == False
 
 - name: creating symlink .zsh
   file:
-    src: ~/workspace/dotfiles/.zshrc
-    dest: ~/.zshrc
+    src: /home/welcome/workspace/dotfiles/.zshrc
+    dest: /home/welcome/.zshrc
     state: link
 
 - name: replacing solarized.vim theme to custom
   template:
     src: templates/solarized.vim.j2
-    dest: ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim
+    dest: /home/welcome/.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim
     mode: 0750
 
 
