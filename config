@@ -28,7 +28,7 @@ bindsym $mod+o exec kmix
 # i3 lock
 bindsym $mod+l exec i3lock -e -f -I10 -i ~/.i3/lock.png && echo mem > /sys/power/state
 
-exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -i /home/welcome/pic/1.png -I' && echo mem > /sys/power/state
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -d -i /home/welcome/workspace/dotfiles/lock.png -I' && echo mem > /sys/power/state
 
 bindsym $mod+Shift+q kill
 
