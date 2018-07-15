@@ -1,3 +1,4 @@
+;https://github.com/jaagr/polybar/wiki/Configuration
 [bar/i3wmthemer_bar]
 width = 100%
 height = 27
