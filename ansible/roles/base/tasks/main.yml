@@ -27,10 +27,10 @@
     name: python
     state: latest
 
-- name: install the latest version of gnome-terminal
-  package:
-    name: gnome-terminal
-    state: latest
+    #- name: install the latest version of gnome-terminal
+    #package:
+    #name: gnome-terminal
+    #state: latest
 
 - name: install the latest version of powertop
   package:
@@ -98,11 +98,11 @@
     path: /home/welcome/ohmyzsh.sh
     state: absent
 
-- name: create .i3 folder
-  file:
-    path: /home/welcome/.i3
-    state: directory
-    mode: 0750
+    #- name: create .i3 folder
+    #file:
+    #path: /home/welcome/.i3
+    #state: directory
+    #mode: 0750
 
 - name: checking for .vimrc
   stat:
@@ -143,79 +143,79 @@
     dest: /home/welcome/.bashrc
     state: link
 
-- name: checking for i3 config
-  stat:
-    path: /home/welcome/.i3/config
-  register: i3config
+    #- name: checking for i3 config
+    # stat:
+    #path: /home/welcome/.i3/config
+    #register: i3config
 
-- name: making sure i3 config is symlink
-  file:
-    path: /home/welcome/.i3/config
-    state: absent
-  when: i3config.stat.islnk is defined and i3config.stat.islnk == False
+    #- name: making sure i3 config is symlink
+    #file:
+    #path: /home/welcome/.i3/config
+    # state: absent
+    #when: i3config.stat.islnk is defined and i3config.stat.islnk == False
 
-- name: creating symlink i3 config
-  file:
-    src: /home/welcome/workspace/dotfiles/config
-    dest: /home/welcome/.i3/config
-    state: link
+    #- name: creating symlink i3 config
+    #file:
+    #src: /home/welcome/workspace/dotfiles/config
+    #dest: /home/welcome/.i3/config
+    #state: link
 
-- name: checking for i3 IconicWeather.sh
-  stat:
-    path: /home/welcome/.i3/IconicWeather.sh
-  register: i3weather
+    #- name: checking for i3 IconicWeather.sh
+    #stat:
+    #path: /home/welcome/.i3/IconicWeather.sh
+    #register: i3weather
 
-- name: making sure i3 IconicWeather.sh is symlink
-  file:
-    path: /home/welcome/.i3/IconicWeather.sh
-    state: absent
-  when: i3weather.stat.islnk is defined and i3weather.stat.islnk == False
+    #- name: making sure i3 IconicWeather.sh is symlink
+    #file:
+    #path: /home/welcome/.i3/IconicWeather.sh
+    #state: absent
+    #when: i3weather.stat.islnk is defined and i3weather.stat.islnk == False
 
-- name: creating symlink IconicWeather.sh
-  file:
-    src: /home/welcome/workspace/dotfiles/IconicWeather.sh
-    dest: /home/welcome/.i3/IconicWeather.sh
-    state: link
+    #- name: creating symlink IconicWeather.sh
+    #file:
+    #src: /home/welcome/workspace/dotfiles/IconicWeather.sh
+    #dest: /home/welcome/.i3/IconicWeather.sh
+    #state: link
 
-- name: checking for i3blocks.conf
-  stat:
-    path: /home/welcome/.i3/i3blocks.conf
-  register: i3blocks
+    #- name: checking for i3blocks.conf
+    #stat:
+    #path: /home/welcome/.i3/i3blocks.conf
+    #register: i3blocks
 
-- name: making sure i3blocks.conf is symlink
-  file:
-    path: /home/welcome/.i3/i3blocks.conf
-    state: absent
-  when: i3blocks.stat.islnk is defined and i3blocks.stat.islnk == False
+    #- name: making sure i3blocks.conf is symlink
+    #file:
+    #path: /home/welcome/.i3/i3blocks.conf
+    #state: absent
+    #when: i3blocks.stat.islnk is defined and i3blocks.stat.islnk == False
 
-- name: creating symlink i3blocks.conf
-  file:
-    src: /home/welcome/workspace/dotfiles/i3blocks.conf
-    dest: /home/welcome/.i3/i3blocks.conf
-    state: link
+    #- name: creating symlink i3blocks.conf
+    #file:
+    #src: /home/welcome/workspace/dotfiles/i3blocks.conf
+    #dest: /home/welcome/.i3/i3blocks.conf
+    #state: link
 
-- name: creating .config/dconf folder
-  file:
-    path: /home/welcome/.config/dconf/
-    state: directory
-    mode: 0750
+    #- name: creating .config/dconf folder
+    #file:
+    #path: /home/welcome/.config/dconf/
+    #state: directory
+    #mode: 0750
 
-- name: checking for gnome terminal settings
-  stat:
-    path: /home/welcome/.config/dconf/user
-  register: GTuser
+    #- name: checking for gnome terminal settings
+    #stat:
+    #path: /home/welcome/.config/dconf/user
+    #register: GTuser
 
-- name: making sure gnome terminal settings are set as symlink
-  file:
-    path: /home/welcome/.config/dconf/user
-    state: absent
-  when: GTuser.stat.islnk is defined and GTuser.stat.islnk == False
+    #- name: making sure gnome terminal settings are set as symlink
+    #file:
+    #path: /home/welcome/.config/dconf/user
+    #state: absent
+    #when: GTuser.stat.islnk is defined and GTuser.stat.islnk == False
 
-- name: creating symlink user (gnome-terminal settings)
-  file:
-    src: /home/welcome/workspace/dotfiles/user
-    dest: /home/welcome/.config/dconf/user
-    state: link
+    #- name: creating symlink user (gnome-terminal settings)
+    #file:
+    #src: /home/welcome/workspace/dotfiles/user
+    #dest: /home/welcome/.config/dconf/user
+    #state: link
 
 - name: checking for .zshrc
   stat:

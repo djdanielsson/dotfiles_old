@@ -38,11 +38,11 @@
     #description: yaroslav i3desktop
     #baseurl: https://copr.fedorainfracloud.org/coprs/yaroslav/i3desktop/repo/fedora-{{ ansible_distribution_major_version }}/yaroslav-i3desktop-fedora-{{ ansible_distribution_major_version }}.repo
 
-- name: Add pkajaba i3blocks repository
-  get_url:
-    url: https://copr.fedorainfracloud.org/coprs/pkajaba/i3blocks/repo/fedora-24/pkajaba-i3blocks-fedora-24.repo
-    dest: /etc/yum.repos.d/pkajaba-i3blocks-fedora-24.repo
-    mode: 0644
+    #- name: Add pkajaba i3blocks repository
+    #get_url:
+    #url: https://copr.fedorainfracloud.org/coprs/pkajaba/i3blocks/repo/fedora-24/pkajaba-i3blocks-fedora-24.repo
+    #dest: /etc/yum.repos.d/pkajaba-i3blocks-fedora-24.repo
+    #mode: 0644
 
     #- name: Add pkajaba i3blocks repository
     #yum_repository:
@@ -71,10 +71,10 @@
     name: "*"
     state: latest
 
-- name: install the latest version of i3blocks
-  package:
-    name: i3blocks
-    state: latest
+    #- name: install the latest version of i3blocks
+    #package:
+    #name: i3blocks
+    #state: latest
 
 - name: install the latest version of i3lock
   package:
