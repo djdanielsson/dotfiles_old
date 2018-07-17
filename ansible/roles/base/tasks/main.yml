@@ -145,7 +145,7 @@
 
 - name: git pull polybar
   git:
-    repo: 'https://github.com/jaagr/polybar'
+    repo: 'https://github.com/jaagr/polybar.git'
     dest: /home/welcome/workspace/polybar
     recursive: yes
     update: no
@@ -154,6 +154,29 @@
   command: build.sh
   args:
     chdir: /home/welcome/workspace/polybar/
+
+- name: git pull adobe-fonts
+  git:
+    repo: 'https://github.com/adobe-fonts/source-code-pro.git'
+    dest: /usr/share/fonts/opentype/scp
+    update: no
+
+- name: git pull nerd-fonts
+  git:
+    repo: 'https://github.com/ryanoasis/nerd-fonts'
+    dest: /tmp/nerd-fonts
+    update: no
+
+- name: build/install nerd-fonts
+  command: install.sh
+  args:
+    chdir: /tmp/nerd-fonts
+
+- name: git pull i3wm-themer
+  git:
+    repo: 'https://github.com/unix121/i3wm-themer.git'
+    dest: /tmp/i3wm-themer
+    update: no
 
 - name: git pull dotfiles
   git:
