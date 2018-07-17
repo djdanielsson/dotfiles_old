@@ -27,6 +27,96 @@
     name: python
     state: latest
 
+- name: install the latest version of python3
+  package:
+    name: python3
+    state: latest
+
+- name: install the latest version of nitrogen
+  package:
+    name: nitrogen
+    state: latest
+
+- name: install the latest version of npm
+  package:
+    name: npm
+    state: latest
+
+- name: install the latest version of cmake
+  package:
+    name: cmake
+    state: latest
+
+- name: install the latest version of gcc-c++
+  package:
+    name: gcc-c++
+    state: latest
+
+- name: install the latest version of i3-ipc
+  package:
+    name: i3-ipc
+    state: latest
+
+- name: install the latest version of jsoncpp-devel
+  package:
+    name: jsoncpp-devel
+    state: latest
+
+- name: install the latest version of alsa-lib-devel
+  package:
+    name: alsa-lib-devel
+    state: latest
+
+- name: install the latest version of pulseaudio-libs-devel
+  package:
+    name: pulseaudio-libs-devel
+    state: latest
+
+- name: install the latest version of wireless-tools-devel
+  package:
+    name: wireless-tools-devel
+    state: latest
+
+- name: install the latest version of libmpdclient-devel
+  package:
+    name: libmpdclient-devel
+    state: latest
+
+- name: install the latest version of libcurl-devel
+  package:
+    name: libcurl-devel
+    state: latest
+
+- name: install the latest version of cairo-devel
+  package:
+    name: cairo-devel
+    state: latest
+
+- name: install the latest version of xcb-proto
+  package:
+    name: xcb-proto
+    state: latest
+
+- name: install the latest version of xcb-util-devel
+  package:
+    name: xcb-util-devel
+    state: latest
+
+- name: install the latest version of xcb-util-wm-devel
+  package:
+    name: xcb-util-wm-devel
+    state: latest
+
+- name: install the latest version of xcb-util-xrm
+  package:
+    name: xcb-util-xrm
+    state: latest
+
+- name: install the latest version of xcb-util-xrm-devel
+  package:
+    name: xcb-util-xrm-devel
+    state: latest
+
     #- name: install the latest version of gnome-terminal
     #package:
     #name: gnome-terminal
@@ -52,6 +142,18 @@
     path: /home/welcome/workspace
     state: directory
     mode: 0750
+
+- name: git pull polybar
+  git:
+    repo: 'https://github.com/jaagr/polybar'
+    dest: /home/welcome/workspace/polybar
+    recursive: yes
+    update: no
+
+- name: build/install polybar
+  command: build.sh
+  args:
+    chdir: /home/welcome/workspace/polybar/
 
 - name: git pull dotfiles
   git:

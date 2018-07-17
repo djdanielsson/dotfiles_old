@@ -76,6 +76,11 @@
     #name: i3blocks
     #state: latest
 
+- name: install the latest version of i3-gaps
+  package:
+    name: i3-gaps
+    state: latest
+
 - name: install the latest version of i3lock
   package:
     name: i3lock
