@@ -29,6 +29,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
 Plugin 'reedes/vim-thematic'
+Plugin 'JuliaEditorSupport/julia-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -125,5 +126,6 @@ set smartcase
 set scrolloff=3
 set softtabstop=2
 
+autocmd BufNewFile,BufRead *.jl :set filetype=julia
 
 
