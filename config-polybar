@@ -78,7 +78,7 @@ label = CPU %percentage%%
 
 [module/wlan]
 type = internal/network
-interface = net1
+interface = wlp1s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
