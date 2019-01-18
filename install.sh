@@ -84,7 +84,6 @@ echo -e "${BLUE}setting up vim and addons${NC}"
 if ! [ -e ~/.vim/bundle/Vundle.vim ]; then
   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-vim +PluginInstall +qall
 
 echo -e "${BLUE}setting configuration files${NC}"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -96,6 +95,7 @@ if ! [ -h ~/.vimrc ]; then
   rm ~/.vimrc 2> /dev/null
   ln -s ~/workspace/dotfiles/.vimrc ~/
 fi
+vim +PluginInstall +qall
 if ! [ -h ~/.bashrc ]; then
   rm ~/.bashrc 2> /dev/null
   ln -s ~/workspace/dotfiles/.bashrc ~/
