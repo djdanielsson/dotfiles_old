@@ -40,3 +40,5 @@ alias emacs="emacs -nw"
 alias minecraft="java -jar ~/Downloads/Minecraft.jar"
 alias cleanMem="sudo su -c 'sync; echo 1 > /proc/sys/vm/drop_caches; echo 2 > /proc/sys/vm/drop_caches; echo 3 > /proc/sys/vm/drop_caches'"
 alias brlSysUpgrade="sudo pacman -Syu;sudo apt-get update;sudo apt-get upgrade;sudo dnf update"
+
+zsh
