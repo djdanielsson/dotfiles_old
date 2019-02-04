@@ -54,6 +54,9 @@ if [ "${answer,,}" == "yes" ]; then
     ubuntu)
       su -c 'apt-get install -y vim git'
       ;;
+    raspbian)
+      su -c 'apt-get install -y vim git fontconfig'
+      ;;
     centos)
       su -c 'yum install -y vim git'
       ;;
