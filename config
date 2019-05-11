@@ -16,6 +16,7 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec gnome-terminal
 #bindsym $mod+Return exec /home/welcome/.cargo/bin/alacritty
+bindsym $mod+g exec firefox
 
 # i3 lock
 bindsym $mod+l exec i3lock -e -f -I10 -i ~/.i3/lock.png && echo mem > /sys/power/state

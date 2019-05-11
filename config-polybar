@@ -89,6 +89,7 @@ label-connected = %essid%
 
 format-disconnected =
 
+ramp-signal = 
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
@@ -113,8 +114,9 @@ format-disconnected = 0.0.0.0
 
 [module/volume]
 type = internal/volume
-#format-volume = <ramp-volume> <label-volume>
-format-volume = <label-volume>
+#format-volume = <ramp-volume><label-volume>
+format-volume =  <label-volume>
+#ramp-volume = 
 
 [module/date]
 type = internal/date
