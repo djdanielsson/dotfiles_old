@@ -1,6 +1,7 @@
 ---
 # if fedora then
 - include: fedora.yml
+  when: ansible_os == fedora
 
 - name: install the latest version of vim
   package:
@@ -32,10 +33,10 @@
     name: python3
     state: latest
 
-- name: install the latest version of nitrogen
-  package:
-    name: nitrogen
-    state: latest
+    #- name: install the latest version of nitrogen
+    #  package:
+    #    name: nitrogen
+    #    state: latest
 
 - name: install the latest version of npm
   package:
@@ -52,16 +53,16 @@
     name: gcc-c++
     state: latest
 
-- name: install the latest version of i3-ipc
-  package:
-    name: i3-ipc
-    state: latest
+    #- name: install the latest version of i3-ipc
+    #  package:
+    #    name: i3-ipc
+    #    state: latest
 
-- name: install the latest version of jsoncpp-devel
-  package:
-    name: jsoncpp-devel
-    state: latest
-
+    #- name: install the latest version of jsoncpp-devel
+    #  package:
+    #    name: jsoncpp-devel
+    #    state: latest
+    #
 - name: install the latest version of alsa-lib-devel
   package:
     name: alsa-lib-devel
@@ -87,40 +88,40 @@
     name: libcurl-devel
     state: latest
 
-- name: install the latest version of cairo-devel
-  package:
-    name: cairo-devel
-    state: latest
+    #- name: install the latest version of cairo-devel
+    #  package:
+    #    name: cairo-devel
+    #    state: latest
+    #
+    #- name: install the latest version of xcb-proto
+    #  package:
+    #    name: xcb-proto
+    #    state: latest
+    #
+    #- name: install the latest version of xcb-util-devel
+    #  package:
+    #    name: xcb-util-devel
+    #    state: latest
+    #
+    #- name: install the latest version of xcb-util-wm-devel
+    #  package:
+    #    name: xcb-util-wm-devel
+    #    state: latest
+    #
+    #- name: install the latest version of xcb-util-xrm
+    #  package:
+    #    name: xcb-util-xrm
+    #    state: latest
+    #
+    #- name: install the latest version of xcb-util-xrm-devel
+    #  package:
+    #    name: xcb-util-xrm-devel
+    #    state: latest
 
-- name: install the latest version of xcb-proto
+- name: install the latest version of gnome-terminal
   package:
-    name: xcb-proto
+    name: gnome-terminal
     state: latest
-
-- name: install the latest version of xcb-util-devel
-  package:
-    name: xcb-util-devel
-    state: latest
-
-- name: install the latest version of xcb-util-wm-devel
-  package:
-    name: xcb-util-wm-devel
-    state: latest
-
-- name: install the latest version of xcb-util-xrm
-  package:
-    name: xcb-util-xrm
-    state: latest
-
-- name: install the latest version of xcb-util-xrm-devel
-  package:
-    name: xcb-util-xrm-devel
-    state: latest
-
-    #- name: install the latest version of gnome-terminal
-    #package:
-    #name: gnome-terminal
-    #state: latest
 
 - name: install the latest version of powertop
   package:
@@ -142,41 +143,41 @@
     path: /home/welcome/workspace
     state: directory
     mode: 0750
-
-- name: git pull polybar
-  git:
-    repo: 'https://github.com/jaagr/polybar.git'
-    dest: /home/welcome/workspace/polybar
-    recursive: yes
-    update: no
-
-- name: build/install polybar
-  command: build.sh
-  args:
-    chdir: /home/welcome/workspace/polybar/
-
-- name: git pull adobe-fonts
-  git:
-    repo: 'https://github.com/adobe-fonts/source-code-pro.git'
-    dest: /usr/share/fonts/opentype/scp
-    update: no
-
-- name: git pull nerd-fonts
-  git:
-    repo: 'https://github.com/ryanoasis/nerd-fonts'
-    dest: /tmp/nerd-fonts
-    update: no
-
-- name: build/install nerd-fonts
-  command: install.sh
-  args:
-    chdir: /tmp/nerd-fonts
-
-- name: git pull i3wm-themer
-  git:
-    repo: 'https://github.com/unix121/i3wm-themer.git'
-    dest: /tmp/i3wm-themer
-    update: no
+    #
+    #- name: git pull polybar
+    #  git:
+    #    repo: 'https://github.com/jaagr/polybar.git'
+    #    dest: /home/welcome/workspace/polybar
+    #    recursive: yes
+    #    update: no
+    #
+    #- name: build/install polybar
+    #  command: build.sh
+    #  args:
+    #    chdir: /home/welcome/workspace/polybar/
+    #
+    #- name: git pull adobe-fonts
+    #  git:
+    #    repo: 'https://github.com/adobe-fonts/source-code-pro.git'
+    #    dest: /usr/share/fonts/opentype/scp
+    #    update: no
+    #
+    #- name: git pull nerd-fonts
+    #  git:
+    #    repo: 'https://github.com/ryanoasis/nerd-fonts'
+    #    dest: /tmp/nerd-fonts
+    #    update: no
+    #
+    #- name: build/install nerd-fonts
+    #  command: install.sh
+    #  args:
+    #    chdir: /tmp/nerd-fonts
+    #
+    #- name: git pull i3wm-themer
+    #  git:
+    #    repo: 'https://github.com/unix121/i3wm-themer.git'
+    #    dest: /tmp/i3wm-themer
+    #    update: no
 
 - name: git pull dotfiles
   git:
@@ -200,19 +201,19 @@
 - name: checking to see if oh-my-zsh is already installed
   stat:
     path: /home/welcome/.oh-my-zsh
-  register: DLohmyzsh
+    register: DLohmyzsh
 
 - name: downloading the installer for oh-my-zsh
   get_url:
     url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
     dest: /home/welcome/ohmyzsh.sh
     mode: 0750
-  when: DLohmyzsh.stat.islnk is not defined
+    when: DLohmyzsh.stat.islnk is not defined
 
 - name: checking for oh-my-zsh installer
   stat:
     path: /home/welcome/ohmyzsh.sh
-  register: ohmyzsh
+    register: ohmyzsh
 
 - name: Installing oh-my-zsh
   command: /usr/bin/bash /home/welcome/ohmyzsh.sh
@@ -232,13 +233,13 @@
 - name: checking for .vimrc
   stat:
     path: /home/welcome/.vimrc
-  register: vimrc
+    register: vimrc
 
 - name: making sure .vimrc is symlink
   file:
     path: /home/welcome/.vimrc
     state: absent
-  when: vimrc.stat.islnk is defined and vimrc.stat.islnk == False
+    when: vimrc.stat.islnk is defined and vimrc.stat.islnk == False
 
 - name: creating symlink .vimrc
   file:
@@ -254,13 +255,13 @@
 - name: checking for .bashrc
   stat:
     path: /home/welcome/.bashrc
-  register: bashrc
+    register: bashrc
 
 - name: making sure .bashrc is symlink
   file:
     path: /home/welcome/.bashrc
     state: absent
-  when: bashrc.stat.islnk is defined and bashrc.stat.islnk == False
+    when: bashrc.stat.islnk is defined and bashrc.stat.islnk == False
 
 - name: creating symlink .bashrc
   file:
@@ -345,13 +346,13 @@
 - name: checking for .zshrc
   stat:
     path: /home/welcome/.zshrc
-  register: zshrc
+    register: zshrc
 
 - name: making sure .zshrc is symlink
   file:
     path: /home/welcome/.zshrc
     state: absent
-  when: zshrc.stat.islnk is defined and zshrc.stat.islnk == False
+    when: zshrc.stat.islnk is defined and zshrc.stat.islnk == False
 
 - name: creating symlink .zsh
   file:

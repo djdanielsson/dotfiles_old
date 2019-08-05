@@ -5,11 +5,11 @@
     dest: /etc/yum.repos.d/docker-ce.repo
     mode: 0644
 
-#- name: Add docker repository
-  #yum_repository:
-    #name: docker-ce
-    #description: Official docker repo
-    #baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
+- name: Add docker repository
+  yum_repository:
+    name: docker-ce
+    description: Official docker repo
+    baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
 
 - name: install dnf-plugins-core required for rpmfusion
   package:
@@ -50,21 +50,21 @@
     #description: pkajaba i3blocks
     #baseurl: https://copr.fedorainfracloud.org/coprs/pkajaba/i3blocks/repo/fedora-24/pkajaba-i3blocks-fedora-24.repo
 
-- name: Add opera browser repository
-  yum_repository:
-    name: opera
-    description: opera browser
-    baseurl: https://rpm.opera.com/rpm
-    gpgkey: https://rpm.opera.com/rpmrepo.key
-    gpgcheck: yes
-
-- name: Add google chrome browser repository
-  yum_repository:
-    name: google-chrome
-    description: google chrome browser
-    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
-    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
-    gpgcheck: yes
+    #- name: Add opera browser repository
+    #  yum_repository:
+    #    name: opera
+    #    description: opera browser
+    #    baseurl: https://rpm.opera.com/rpm
+    #    gpgkey: https://rpm.opera.com/rpmrepo.key
+    #    gpgcheck: yes
+    #
+    #- name: Add google chrome browser repository
+    #  yum_repository:
+    #    name: google-chrome
+    #    description: google chrome browser
+    #    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    #    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+    #    gpgcheck: yes
 
 - name: upgrade all packages
   dnf:
@@ -76,10 +76,10 @@
     #name: i3blocks
     #state: latest
 
-- name: install the latest version of i3-gaps
-  package:
-    name: i3-gaps
-    state: latest
+    #- name: install the latest version of i3-gaps
+    #  package:
+    #    name: i3-gaps
+    #    state: latest
 
 - name: install the latest version of i3lock
   package:
