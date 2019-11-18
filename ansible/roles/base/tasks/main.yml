@@ -138,6 +138,11 @@
     name: zsh
     state: latest
 
+- name: install the latest version of dunst
+  package:
+    name: dunst
+    state: latest
+
 - name: creating workspace
   file:
     path: /home/welcome/workspace
@@ -267,6 +272,23 @@
   file:
     src: /home/welcome/workspace/dotfiles/.bashrc
     dest: /home/welcome/.bashrc
+    state: link
+
+- name: checking for dunst
+  stat:
+    path: /home/welcome/.config/dunst/dunstrc
+    register: dunstrc
+
+- name: making sure dunstrc is symlink
+  file:
+    path: /home/welcome/.config/dunst/dunstrc
+    state: absent
+    when: dunstrc.stat.islnk is defined and dunstrc.stat.islnk == False
+
+- name: creating symlink dunst
+  file:
+    src: /home/welcome/workspace/dotfiles/dunstrc
+    dest: /home/welcome/.config/dunst/dunstrc
     state: link
 
     #- name: checking for i3 config
