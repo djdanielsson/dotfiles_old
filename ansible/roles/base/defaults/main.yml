@@ -1,0 +1,64 @@
+packages:
+  - "*"
+  - dnf-plugins-core
+  - yarslav
+  - pkajaba
+  - i3blocks
+  - i3-gaps
+  - i3lock
+  - rofi
+  - vim-minimal
+  - git
+  - acpi
+  - xautolock
+  - python
+  - python3
+  - nitrogen
+  - npm
+  - cmake
+  - gcc-c++
+  - i3-ipc
+  - jsoncpp-devel
+  - alsa-lib-devel
+  - pulseaudio-libs-devel
+  - wireless-tools-devel
+  - libmpdclient-devel
+  - libcurl-devel
+  - cairo-devel
+  - xcb-proto
+  - xcb-util-devel
+  - xcb-util-wm-devel
+  - xcb-util-xrm
+  - xcb-util-xrm-devel
+  - gnome-terminal
+  - powertop
+  - xbacklight
+  - zsh
+  - dunst
+
+semlinks:
+  zshrc:
+    file_src: /home/welcome/workspace/dotfiles/.zshrc
+    file_dest: /home/welcome/.zshrc
+  vimrc:
+    file_ src: /home/welcome/workspace/dotfiles/.vimrc
+    file_ dest: /home/welcome/.vimrc
+  bashrc:
+    file_ src: /home/welcome/workspace/dotfiles/.bashrc
+    file_ dest: /home/welcome/.bashrc
+  dunst:
+    file_ src: /home/welcome/workspace/dotfiles/dunstrc
+    file_ dest: /home/welcome/.config/dunst/dunstrc
+  i3_config:
+    file_ src: /home/welcome/workspace/dotfiles/config
+    file_ dest: /home/welcome/.i3/config
+  i3_weather:
+    file_ src: /home/welcome/workspace/dotfiles/IconicWeather.sh
+    file_ dest: /home/welcome/.i3/IconicWeather.sh
+  i3_blocks:
+    file_ src: /home/welcome/workspace/dotfiles/i3blocks.conf
+    file_ dest: /home/welcome/.i3/i3blocks.conf
+  dconf:
+    file_ src: /home/welcome/workspace/dotfiles/user
+    file_ dest: /home/welcome/.config/dconf/user
+

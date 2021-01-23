@@ -3,55 +3,17 @@
 - include: fedora.yml
   when: ansible_os == fedora
 
-- name: install the latest version of vim
+- name: install packages
   package:
-    name: vim
+    name: "{{ item }}"
     state: latest
-
-- name: install the latest version of git
-  package:
-    name: git
-    state: latest
-
-- name: install the latest version of acpi
-  package:
-    name: acpi
-    state: latest
-
-- name: install the latest version of xautolock
-  package:
-    name: xautolock
-    state: latest
-
-- name: install the latest version of python
-  package:
-    name: python
-    state: latest
-
-- name: install the latest version of python3
-  package:
-    name: python3
-    state: latest
+  loop:
+    "{{ packages }}"
 
     #- name: install the latest version of nitrogen
     #  package:
     #    name: nitrogen
     #    state: latest
-
-- name: install the latest version of npm
-  package:
-    name: npm
-    state: latest
-
-- name: install the latest version of cmake
-  package:
-    name: cmake
-    state: latest
-
-- name: install the latest version of gcc-c++
-  package:
-    name: gcc-c++
-    state: latest
 
     #- name: install the latest version of i3-ipc
     #  package:
@@ -63,30 +25,6 @@
     #    name: jsoncpp-devel
     #    state: latest
     #
-- name: install the latest version of alsa-lib-devel
-  package:
-    name: alsa-lib-devel
-    state: latest
-
-- name: install the latest version of pulseaudio-libs-devel
-  package:
-    name: pulseaudio-libs-devel
-    state: latest
-
-- name: install the latest version of wireless-tools-devel
-  package:
-    name: wireless-tools-devel
-    state: latest
-
-- name: install the latest version of libmpdclient-devel
-  package:
-    name: libmpdclient-devel
-    state: latest
-
-- name: install the latest version of libcurl-devel
-  package:
-    name: libcurl-devel
-    state: latest
 
     #- name: install the latest version of cairo-devel
     #  package:
@@ -117,31 +55,6 @@
     #  package:
     #    name: xcb-util-xrm-devel
     #    state: latest
-
-- name: install the latest version of gnome-terminal
-  package:
-    name: gnome-terminal
-    state: latest
-
-- name: install the latest version of powertop
-  package:
-    name: powertop
-    state: latest
-
-- name: install the latest version of xbacklight
-  package:
-    name: xbacklight
-    state: latest
-
-- name: install the latest version of zsh
-  package:
-    name: zsh
-    state: latest
-
-- name: install the latest version of dunst
-  package:
-    name: dunst
-    state: latest
 
 - name: creating workspace
   file:

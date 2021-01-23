@@ -1,17 +1,14 @@
 ---
-
 - name: install base configuration
   hosts: all
-  remote_user: root
   connection: local
-
+  remote_user: root
   roles:
     - base
 
 - name: configure and deploy the webservers and application code
   hosts: chromebook
   remote_user: root
-
   roles:
-  - chromebook
+    - chromebook
 
