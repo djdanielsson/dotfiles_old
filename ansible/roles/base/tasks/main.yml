@@ -1,304 +1,147 @@
 ---
-# if fedora then
+# tasks file for base
 - include: fedora.yml
-  when: ansible_os == fedora
+  when: ansible_distribution == "Fedora"
 
-- name: install packages
+- name: install the latest packages
+  become: yes
   package:
     name: "{{ item }}"
     state: latest
-  loop:
-    "{{ packages }}"
-
-    #- name: install the latest version of nitrogen
-    #  package:
-    #    name: nitrogen
-    #    state: latest
-
-    #- name: install the latest version of i3-ipc
-    #  package:
-    #    name: i3-ipc
-    #    state: latest
-
-    #- name: install the latest version of jsoncpp-devel
-    #  package:
-    #    name: jsoncpp-devel
-    #    state: latest
-    #
-
-    #- name: install the latest version of cairo-devel
-    #  package:
-    #    name: cairo-devel
-    #    state: latest
-    #
-    #- name: install the latest version of xcb-proto
-    #  package:
-    #    name: xcb-proto
-    #    state: latest
-    #
-    #- name: install the latest version of xcb-util-devel
-    #  package:
-    #    name: xcb-util-devel
-    #    state: latest
-    #
-    #- name: install the latest version of xcb-util-wm-devel
-    #  package:
-    #    name: xcb-util-wm-devel
-    #    state: latest
-    #
-    #- name: install the latest version of xcb-util-xrm
-    #  package:
-    #    name: xcb-util-xrm
-    #    state: latest
-    #
-    #- name: install the latest version of xcb-util-xrm-devel
-    #  package:
-    #    name: xcb-util-xrm-devel
-    #    state: latest
+  loop: "{{ packages }}"
 
 - name: creating workspace
   file:
-    path: /home/welcome/workspace
+    path: "{{ home_dir }}workspace"
     state: directory
     mode: 0750
-    #
-    #- name: git pull polybar
-    #  git:
-    #    repo: 'https://github.com/jaagr/polybar.git'
-    #    dest: /home/welcome/workspace/polybar
-    #    recursive: yes
-    #    update: no
-    #
-    #- name: build/install polybar
-    #  command: build.sh
-    #  args:
-    #    chdir: /home/welcome/workspace/polybar/
-    #
-    #- name: git pull adobe-fonts
-    #  git:
-    #    repo: 'https://github.com/adobe-fonts/source-code-pro.git'
-    #    dest: /usr/share/fonts/opentype/scp
-    #    update: no
-    #
-    #- name: git pull nerd-fonts
-    #  git:
-    #    repo: 'https://github.com/ryanoasis/nerd-fonts'
-    #    dest: /tmp/nerd-fonts
-    #    update: no
-    #
-    #- name: build/install nerd-fonts
-    #  command: install.sh
-    #  args:
-    #    chdir: /tmp/nerd-fonts
-    #
-    #- name: git pull i3wm-themer
-    #  git:
-    #    repo: 'https://github.com/unix121/i3wm-themer.git'
-    #    dest: /tmp/i3wm-themer
-    #    update: no
 
 - name: git pull dotfiles
   git:
     repo: 'https://github.com/djdanielsson/dotfiles.git'
-    dest: /home/welcome/workspace/dotfiles
+    dest: "{{ home_dir }}workspace/dotfiles"
     update: no
 
 - name: create .local/share folder
   file:
-    path: /home/welcome/.local/share/
+    path: "{{ home_dir }}.local/share/"
     state: directory
     mode: 0750
-
-    # fonts still need to be added
 
 - name: git pull Vundle
   git:
     repo: 'https://github.com/gmarik/Vundle.vim.git'
-    dest: /home/welcome/.vim/bundle/Vundle.vim
+    dest: "{{ home_dir }}.vim/bundle/Vundle.vim"
 
 - name: checking to see if oh-my-zsh is already installed
   stat:
-    path: /home/welcome/.oh-my-zsh
-    register: DLohmyzsh
+    path: "{{ home_dir }}.oh-my-zsh"
+  register: DLohmyzsh
 
 - name: downloading the installer for oh-my-zsh
   get_url:
     url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-    dest: /home/welcome/ohmyzsh.sh
+    dest: "{{ home_dir }}ohmyzsh.sh"
     mode: 0750
-    when: DLohmyzsh.stat.islnk is not defined
+  when: DLohmyzsh.stat.islnk is not defined
 
 - name: checking for oh-my-zsh installer
   stat:
-    path: /home/welcome/ohmyzsh.sh
-    register: ohmyzsh
+    path: "{{ home_dir }}ohmyzsh.sh"
+  register: ohmyzsh
 
 - name: Installing oh-my-zsh
-  command: /usr/bin/bash /home/welcome/ohmyzsh.sh
+  command: "/usr/bin/bash {{ home_dir }}ohmyzsh.sh"
   when: ohmyzsh.stat.islnk is defined
 
 - name: removing oh-my-zsh installer
   file:
-    path: /home/welcome/ohmyzsh.sh
+    path: "{{ home_dir }}ohmyzsh.sh"
     state: absent
-
-    #- name: create .i3 folder
-    #file:
-    #path: /home/welcome/.i3
-    #state: directory
-    #mode: 0750
 
 - name: checking for .vimrc
   stat:
-    path: /home/welcome/.vimrc
-    register: vimrc
+    path: "{{ home_dir }}.vimrc"
+  register: vimrc
 
 - name: making sure .vimrc is symlink
   file:
-    path: /home/welcome/.vimrc
+    path: "{{ home_dir }}.vimrc"
     state: absent
-    when: vimrc.stat.islnk is defined and vimrc.stat.islnk == False
+  when: vimrc.stat.islnk is defined and vimrc.stat.islnk == False
 
 - name: creating symlink .vimrc
   file:
-    src: /home/welcome/workspace/dotfiles/.vimrc
-    dest: /home/welcome/.vimrc
+    src: "{{ home_dir }}workspace/dotfiles/.vimrc"
+    dest: "{{ home_dir }}.vimrc"
     state: link
 
 - name: Run the vim command to install/update plugins
   command: /usr/bin/vim +PluginInstall +qall
-  async: 90
+  async: 120
   poll: 5
+  failed_when: failed is defined
 
 - name: checking for .bashrc
   stat:
-    path: /home/welcome/.bashrc
-    register: bashrc
+    path: "{{ home_dir }}.bashrc"
+  register: bashrc
 
 - name: making sure .bashrc is symlink
   file:
-    path: /home/welcome/.bashrc
+    path: "{{ home_dir }}.bashrc"
     state: absent
-    when: bashrc.stat.islnk is defined and bashrc.stat.islnk == False
+  when: bashrc.stat.islnk is defined and bashrc.stat.islnk == False
 
 - name: creating symlink .bashrc
   file:
-    src: /home/welcome/workspace/dotfiles/.bashrc
-    dest: /home/welcome/.bashrc
+    src: "{{ home_dir }}workspace/dotfiles/.bashrc"
+    dest: "{{ home_dir }}.bashrc"
     state: link
 
 - name: checking for dunst
   stat:
-    path: /home/welcome/.config/dunst/dunstrc
-    register: dunstrc
+    path: "{{ home_dir }}.config/dunst/dunstrc"
+  register: dunstrc
+
+- name: creating directory
+  file:
+    path: "{{ home_dir }}.config/dunst/dunstrc"
+    state: directory
+  when: dunstrc.stat.exists == False
 
 - name: making sure dunstrc is symlink
   file:
-    path: /home/welcome/.config/dunst/dunstrc
+    path: "{{ home_dir }}.config/dunst/dunstrc"
     state: absent
-    when: dunstrc.stat.islnk is defined and dunstrc.stat.islnk == False
+  when: dunstrc.stat.islnk is defined and dunstrc.stat.islnk == False
 
 - name: creating symlink dunst
   file:
-    src: /home/welcome/workspace/dotfiles/dunstrc
-    dest: /home/welcome/.config/dunst/dunstrc
+    src: "{{ home_dir }}workspace/dotfiles/dunstrc"
+    dest: "{{ home_dir }}.config/dunst/dunstrc"
     state: link
-
-    #- name: checking for i3 config
-    # stat:
-    #path: /home/welcome/.i3/config
-    #register: i3config
-
-    #- name: making sure i3 config is symlink
-    #file:
-    #path: /home/welcome/.i3/config
-    # state: absent
-    #when: i3config.stat.islnk is defined and i3config.stat.islnk == False
-
-    #- name: creating symlink i3 config
-    #file:
-    #src: /home/welcome/workspace/dotfiles/config
-    #dest: /home/welcome/.i3/config
-    #state: link
-
-    #- name: checking for i3 IconicWeather.sh
-    #stat:
-    #path: /home/welcome/.i3/IconicWeather.sh
-    #register: i3weather
-
-    #- name: making sure i3 IconicWeather.sh is symlink
-    #file:
-    #path: /home/welcome/.i3/IconicWeather.sh
-    #state: absent
-    #when: i3weather.stat.islnk is defined and i3weather.stat.islnk == False
-
-    #- name: creating symlink IconicWeather.sh
-    #file:
-    #src: /home/welcome/workspace/dotfiles/IconicWeather.sh
-    #dest: /home/welcome/.i3/IconicWeather.sh
-    #state: link
-
-    #- name: checking for i3blocks.conf
-    #stat:
-    #path: /home/welcome/.i3/i3blocks.conf
-    #register: i3blocks
-
-    #- name: making sure i3blocks.conf is symlink
-    #file:
-    #path: /home/welcome/.i3/i3blocks.conf
-    #state: absent
-    #when: i3blocks.stat.islnk is defined and i3blocks.stat.islnk == False
-
-    #- name: creating symlink i3blocks.conf
-    #file:
-    #src: /home/welcome/workspace/dotfiles/i3blocks.conf
-    #dest: /home/welcome/.i3/i3blocks.conf
-    #state: link
-
-    #- name: creating .config/dconf folder
-    #file:
-    #path: /home/welcome/.config/dconf/
-    #state: directory
-    #mode: 0750
-
-    #- name: checking for gnome terminal settings
-    #stat:
-    #path: /home/welcome/.config/dconf/user
-    #register: GTuser
-
-    #- name: making sure gnome terminal settings are set as symlink
-    #file:
-    #path: /home/welcome/.config/dconf/user
-    #state: absent
-    #when: GTuser.stat.islnk is defined and GTuser.stat.islnk == False
-
-    #- name: creating symlink user (gnome-terminal settings)
-    #file:
-    #src: /home/welcome/workspace/dotfiles/user
-    #dest: /home/welcome/.config/dconf/user
-    #state: link
 
 - name: checking for .zshrc
   stat:
-    path: /home/welcome/.zshrc
-    register: zshrc
+    path: "{{ home_dir }}.zshrc"
+  register: zshrc
 
 - name: making sure .zshrc is symlink
   file:
-    path: /home/welcome/.zshrc
+    path: "{{ home_dir }}.zshrc"
     state: absent
-    when: zshrc.stat.islnk is defined and zshrc.stat.islnk == False
+  when: zshrc.stat.islnk is defined and zshrc.stat.islnk == False
 
 - name: creating symlink .zsh
   file:
-    src: /home/welcome/workspace/dotfiles/.zshrc
-    dest: /home/welcome/.zshrc
+    src: "{{ home_dir }}workspace/dotfiles/.zshrc"
+    dest: "{{ home_dir }}.zshrc"
     state: link
 
 - name: replacing solarized.vim theme to custom
   template:
     src: templates/solarized.vim.j2
-    dest: /home/welcome/.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim
+    dest: "{{ home_dir }}.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim"
     mode: 0750
-
 

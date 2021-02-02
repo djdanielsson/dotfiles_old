@@ -85,7 +85,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 syntax enable
 set background=dark
-silent! colorscheme solarized
+"silent! colorscheme solarized
 set t_Co=256
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
@@ -112,11 +112,11 @@ cmap wq!! execute 'silent w !sudo tee > /dev/null %' \| q!
 
 "new stuff to try out
 set history=2000
-set spell
+"set spell
 set undofile
 set undolevels=1000
 set undoreload=10000
-color solarized
+"color solarized
 highlight clear SignColumn
 highlight clear LineNr
 set backspace=indent,eol,start

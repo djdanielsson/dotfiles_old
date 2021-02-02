@@ -1,41 +1,52 @@
+---
+# defaults file for base
 packages:
   - "*"
+  - acpi
+  - alsa-lib-devel
+  - cairo-devel
+  - cmake
   - dnf-plugins-core
-  - yarslav
-  - pkajaba
-  - i3blocks
+  - dunst
+  - gcc-c++
+  - git
+  - gnome-terminal
   - i3-gaps
   - i3lock
-  - rofi
-  - vim-minimal
-  - git
-  - acpi
-  - xautolock
+  - jsoncpp-devel
+  - libcurl-devel
+  - libmpdclient-devel
+  - lightdm
+  - lsof
+  - nitrogen
+  - nmap
+  - npm
+  - ntfs-3g
+  - ntfs-3g-system-compression
+  - ntfsprogs
+  - p7zip
+  - p7zip-gui
+  - podman
+  - podman-docker
+  - powerline-fonts
+  - powertop
+  - pulseaudio-libs-devel
   - python
   - python3
-  - nitrogen
-  - npm
-  - cmake
-  - gcc-c++
-  - i3-ipc
-  - jsoncpp-devel
-  - alsa-lib-devel
-  - pulseaudio-libs-devel
+  - rofi
+  - rofi-themes
+  - vlc
   - wireless-tools-devel
-  - libmpdclient-devel
-  - libcurl-devel
-  - cairo-devel
+  - xautolock
+  - xbacklight
   - xcb-proto
   - xcb-util-devel
   - xcb-util-wm-devel
   - xcb-util-xrm
   - xcb-util-xrm-devel
-  - gnome-terminal
-  - powertop
-  - xbacklight
   - zsh
-  - dunst
 
+home_dir: /home/welcome/
 semlinks:
   zshrc:
     file_src: /home/welcome/workspace/dotfiles/.zshrc
@@ -48,17 +59,3 @@ semlinks:
     file_ dest: /home/welcome/.bashrc
   dunst:
     file_ src: /home/welcome/workspace/dotfiles/dunstrc
-    file_ dest: /home/welcome/.config/dunst/dunstrc
-  i3_config:
-    file_ src: /home/welcome/workspace/dotfiles/config
-    file_ dest: /home/welcome/.i3/config
-  i3_weather:
-    file_ src: /home/welcome/workspace/dotfiles/IconicWeather.sh
-    file_ dest: /home/welcome/.i3/IconicWeather.sh
-  i3_blocks:
-    file_ src: /home/welcome/workspace/dotfiles/i3blocks.conf
-    file_ dest: /home/welcome/.i3/i3blocks.conf
-  dconf:
-    file_ src: /home/welcome/workspace/dotfiles/user
-    file_ dest: /home/welcome/.config/dconf/user
-
