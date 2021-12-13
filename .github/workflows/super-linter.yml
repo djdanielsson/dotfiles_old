@@ -25,4 +25,6 @@ jobs:
           ANSIBLE_CONFIG_FILE: .ansible-lint.yml
           VALIDATE_YAML: true
           YAML_CONFIG_FILE: .yaml-lint.yml
+          VALIDATE_BASH: true
+          VALIDATE_BASH_EXEC: true
 ...
