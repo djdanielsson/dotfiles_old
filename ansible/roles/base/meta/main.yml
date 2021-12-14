@@ -30,8 +30,8 @@ galaxy_info:
   platforms:
     - name: Fedora
       versions:
-      - all
-      - 33
+        - all
+        - 33
   # - name: SomePlatform
   #   versions:
   #   - all

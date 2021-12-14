@@ -19,7 +19,7 @@ parseable: true
 #######################
 # Set output to quiet #
 #######################
-quiet: false
+quiet: true
 
 #####################
 # Path to rules dir #
@@ -36,6 +36,8 @@ skip_list:
   - 'command-instead-of-module' # Allow git commands for push, add, etc...
   - 'command-instead-of-shell' # Allow use of shell when you want
   - 'no-handler' # Allow step to run like handler
+  - 'git-latest'  # Allow for newest git version
+  - 'package-latest' # Allow newest package version
 
 ##################
 # Tags to follow #
