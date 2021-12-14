@@ -145,3 +145,4 @@
     dest: "{{ home_dir }}.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim"
     mode: 0750
 
+...

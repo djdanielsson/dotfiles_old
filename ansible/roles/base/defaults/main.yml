@@ -59,3 +59,4 @@ semlinks:
     file_ dest: /home/welcome/.bashrc
   dunst:
     file_ src: /home/welcome/workspace/dotfiles/dunstrc
+...
