@@ -46,6 +46,9 @@ skip_list:
 # Use rules #
 #############
 use_default_rules: true
+enable_list:
+  - fqcn-builtins  # opt-in
+  - no-log-password  # opt-in
 
 #################
 # Set verbosity #
