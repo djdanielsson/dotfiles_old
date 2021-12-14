@@ -19,7 +19,7 @@ parseable: true
 #######################
 # Set output to quiet #
 #######################
-quiet: true
+quiet: false
 
 #####################
 # Path to rules dir #

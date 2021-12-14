@@ -140,7 +140,7 @@
     state: link
 
 - name: replacing solarized.vim theme to custom
-  template:
+  ansible.builtin.template:
     src: templates/solarized.vim.j2
     dest: "{{ home_dir }}.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim"
     mode: 0750
