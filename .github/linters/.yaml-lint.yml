@@ -7,7 +7,7 @@
 # # yamllint disable-line                 #
 ###########################################
 ignore: |
-  .github/*
+  .github/
 
 rules:
   braces:

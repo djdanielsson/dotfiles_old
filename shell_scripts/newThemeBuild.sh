@@ -9,7 +9,7 @@ sudo dnf install -y cmake @development-tools gcc-c++ i3-ipc jsoncpp-devel alsa-l
 
 rm -rf /tmp/polybar
 git clone --recursive https://github.com/jaagr/polybar /tmp/polybar
-cd /tmp/polybar
+cd /tmp/polybar || exit
 
 pkill polybar
 
@@ -18,30 +18,30 @@ pkill polybar
 
 sudo git clone https://github.com/adobe-fonts/source-code-pro.git /usr/share/fonts/opentype/scp
 mkdir fonts
-cd fonts
+cd fonts || exit
 wget https://use.fontawesome.com/releases/v5.0.13/fontawesome-free-5.0.13.zip
 unzip fontawesome-free-5.0.13.zip
-cd fontawesome-free-5.0.13
+cd fontawesome-free-5.0.13 || exit
 sudo cp use-on-desktop/* /usr/share/fonts
 sudo fc-cache -f -v
-cd ../..
+cd ../.. || exit
 rm -fr fonts
 
 git clone https://github.com/ryanoasis/nerd-fonts /tmp/
-cd /tmp/nerd-fonts
+cd /tmp/nerd-fonts || exit
 ./install.sh
-cd ..
+cd .. || exit
 rm -rf nerd-fonts
 
 #npm install git://github.com/adobe-fonts/source-code-pro.git#release
 npm install git://github.com/adobe-fonts/source-code-pro.git
 
 git clone https://github.com/unix121/i3wm-themer.git /tmp/
-cd /tmp/i3wm-themer
+cd /tmp/i3wm-themer || exit
 pip install -r requirements.txt
 
 cp -r scripts/* /home/$USER/.config/polybar/
-cd src/
+cd src/ || exit
 python i3wm-themer.py --config config.yaml --install defaults/
 python i3wm-themer.py --config config.yaml --load themes/013.json
 

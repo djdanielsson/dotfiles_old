@@ -3,7 +3,6 @@
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 BLUE='\033[0;34m'
-path=pwd
 
 if [ "$(awk 'NR==1{print $1}' /etc/*release)" == "Fedora" ]; then
   OS=fedora
@@ -17,7 +16,7 @@ elif [ "$(grep "^ID="  /etc/os-release | cut -d "=" -f 2)" == "raspbian" ]; then
 elif [ "$(grep "^NAME=" /etc/os-release | cut -d "=" -f 2 | cut -d '"' -f 2 | cut -d " " -f 1)"  == "Arch" ]; then
   OS=arch
   echo -e "${BLUE}you are running $OS${NC}"
-elif [ $(awk 'NR==1{print $1}' /etc/*release | cut -d '"' -f2) == "Debian" ]; then
+elif [ "$(awk 'NR==1{print $1}' /etc/*release | cut -d '"' -f2)" == "Debian" ]; then
   OS=debian
   echo -e "${BLUE}you are running $OS${NC}"
 elif [ "$(cat /etc/issue | cut -f 1 -d ' ')" == "Ubuntu" ]; then
