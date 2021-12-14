@@ -8,7 +8,7 @@
 ###########################################
 ignore: |
   .github/
-  configs/alacritty.yml
+  ./configs/alacritty.yml
 
 rules:
   braces:

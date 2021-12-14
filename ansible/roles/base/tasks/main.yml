@@ -91,7 +91,7 @@
   ansible.builtin.file:
     path: "{{ home_dir }}.bashrc"
     state: absent
-  when: bashrc.stat.islnk is defined and bashrc.stat.islnk == False
+  when: bashrc.stat.islnk is defined and not bashrc.stat.islnk
 
 - name: creating symlink .bashrc
   ansible.builtin.file:
@@ -108,13 +108,13 @@
   ansible.builtin.file:
     path: "{{ home_dir }}.config/dunst/dunstrc"
     state: directory
-  when: dunstrc.stat.exists == False
+  when: not dunstrc.stat.exists
 
 - name: making sure dunstrc is symlink
   ansible.builtin.file:
     path: "{{ home_dir }}.config/dunst/dunstrc"
     state: absent
-  when: dunstrc.stat.islnk is defined and dunstrc.stat.islnk == False
+  when: dunstrc.stat.islnk is defined and not dunstrc.stat.islnk
 
 - name: creating symlink dunst
   ansible.builtin.file:
@@ -131,7 +131,7 @@
   ansible.builtin.file:
     path: "{{ home_dir }}.zshrc"
     state: absent
-  when: zshrc.stat.islnk is defined and zshrc.stat.islnk == False
+  when: zshrc.stat.islnk is defined and not zshrc.stat.islnk
 
 - name: creating symlink .zsh
   ansible.builtin.file:
