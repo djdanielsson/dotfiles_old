@@ -38,6 +38,7 @@ skip_list:
   - 'no-handler' # Allow step to run like handler
   - 'git-latest'  # Allow for newest git version
   - 'package-latest' # Allow newest package version
+  - 'yaml' # skip yaml and check that with yaml lint itself
 
 ##################
 # Tags to follow #
