@@ -9,6 +9,7 @@
 ignore: |
   .github/
   ./configs/alacritty.yml
+  /workspace/configs/alacritty.yml
 
 rules:
   braces:
