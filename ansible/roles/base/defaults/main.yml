@@ -49,14 +49,14 @@ packages:
 home_dir: /home/welcome/
 semlinks:
   zshrc:
-    file_src: /home/welcome/workspace/dotfiles/.zshrc
-    file_dest: /home/welcome/.zshrc
+    file_src: "{{ home_dir }}workspace/dotfiles/.zshrc"
+    file_dest: "{{ home_dir }}.zshrc"
   vimrc:
-    file_ src: /home/welcome/workspace/dotfiles/.vimrc
-    file_ dest: /home/welcome/.vimrc
+    file_ src: "{{ home_dir }}workspace/dotfiles/.vimrc"
+    file_ dest: "{{ home_dir }}.vimrc"
   bashrc:
-    file_ src: /home/welcome/workspace/dotfiles/.bashrc
-    file_ dest: /home/welcome/.bashrc
+    file_ src: "{{ home_dir }}workspace/dotfiles/.bashrc"
+    file_ dest: "{{ home_dir }}.bashrc"
   dunst:
-    file_ src: /home/welcome/workspace/dotfiles/dunstrc
+    file_ src: "{{ home_dir }}workspace/dotfiles/dunstrc"
 ...

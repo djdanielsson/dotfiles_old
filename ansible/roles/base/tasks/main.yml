@@ -4,7 +4,7 @@
   when: ansible_distribution == "Fedora"
 
 - name: install the latest packages
-  become: true
+  become: yes
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
@@ -20,7 +20,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/djdanielsson/dotfiles.git'
     dest: "{{ home_dir }}workspace/dotfiles"
-    update: false
+    update: no
 
 - name: create .local/share folder
   ansible.builtin.file:
@@ -36,23 +36,23 @@
 - name: checking to see if oh-my-zsh is already installed
   ansible.builtin.stat:
     path: "{{ home_dir }}.oh-my-zsh"
-  register: r_DLohmyzsh
+  register: DLohmyzsh
 
 - name: downloading the installer for oh-my-zsh
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
     dest: "{{ home_dir }}ohmyzsh.sh"
     mode: 0750
-  when: r_DLohmyzsh.stat.islnk is not defined
+  when: DLohmyzsh.stat.islnk is not defined
 
 - name: checking for oh-my-zsh installer
   ansible.builtin.stat:
     path: "{{ home_dir }}ohmyzsh.sh"
-  register: r_ohmyzsh
+  register: ohmyzsh
 
 - name: Installing oh-my-zsh
   ansible.builtin.command: "/usr/bin/bash {{ home_dir }}ohmyzsh.sh"
-  when: r_ohmyzsh.stat.islnk is defined
+  when: ohmyzsh.stat.islnk is defined
 
 - name: removing oh-my-zsh installer
   ansible.builtin.file:
@@ -62,13 +62,13 @@
 - name: checking for .vimrc
   ansible.builtin.stat:
     path: "{{ home_dir }}.vimrc"
-  register: r_vimrc
+  register: vimrc
 
 - name: making sure .vimrc is symlink
   ansible.builtin.file:
     path: "{{ home_dir }}.vimrc"
     state: absent
-  when: r_vimrc.stat.islnk is defined and not r_vimrc.stat.islnk
+  when: vimrc.stat.islnk is defined and vimrc.stat.islnk == False
 
 - name: creating symlink .vimrc
   ansible.builtin.file:
@@ -85,13 +85,13 @@
 - name: checking for .bashrc
   ansible.builtin.stat:
     path: "{{ home_dir }}.bashrc"
-  register: r_bashrc
+  register: bashrc
 
 - name: making sure .bashrc is symlink
   ansible.builtin.file:
     path: "{{ home_dir }}.bashrc"
     state: absent
-  when: r_bashrc.stat.islnk is defined and not r_bashrc.stat.islnk
+  when: bashrc.stat.islnk is defined and bashrc.stat.islnk == False
 
 - name: creating symlink .bashrc
   ansible.builtin.file:
@@ -102,20 +102,19 @@
 - name: checking for dunst
   ansible.builtin.stat:
     path: "{{ home_dir }}.config/dunst/dunstrc"
-  register: r_dunstrc
+  register: dunstrc
 
 - name: creating directory
   ansible.builtin.file:
     path: "{{ home_dir }}.config/dunst/dunstrc"
     state: directory
-    mode: 0750
-  when: not r_dunstrc.stat.exists
+  when: dunstrc.stat.exists == False
 
 - name: making sure dunstrc is symlink
   ansible.builtin.file:
     path: "{{ home_dir }}.config/dunst/dunstrc"
     state: absent
-  when: r_dunstrc.stat.islnk is defined and not r_dunstrc.stat.islnk
+  when: dunstrc.stat.islnk is defined and dunstrc.stat.islnk == False
 
 - name: creating symlink dunst
   ansible.builtin.file:
@@ -126,13 +125,13 @@
 - name: checking for .zshrc
   ansible.builtin.stat:
     path: "{{ home_dir }}.zshrc"
-  register: r_zshrc
+  register: zshrc
 
 - name: making sure .zshrc is symlink
   ansible.builtin.file:
     path: "{{ home_dir }}.zshrc"
     state: absent
-  when: r_zshrc.stat.islnk is defined and not r_zshrc.stat.islnk
+  when: zshrc.stat.islnk is defined and zshrc.stat.islnk == False
 
 - name: creating symlink .zsh
   ansible.builtin.file:
@@ -145,5 +144,4 @@
     src: templates/solarized.vim.j2
     dest: "{{ home_dir }}.vim/bundle/vim-airline-themes/autoload/airline/themes/solarized.vim"
     mode: 0750
-
 ...
