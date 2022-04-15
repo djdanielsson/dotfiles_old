@@ -1,0 +1,124 @@
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    /* "height": 25, // Waybar height (to be removed for auto height) */
+    "font": "Inconsolata",
+    "width": 1920, // Waybar width
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/cmus"],
+    //"modules-center": ["sway/window"],
+    "modules-right": ["disk", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray"],
+    // Modules configuration
+    "sway/workspaces": {
+         "disable-scroll": true
+    //     "all-outputs": true,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "{:%Y-%m-%d | %H:%M}",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 15,
+        "format": "{used:0.1f}G/{total:0.1f}G "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C ",
+        "format": "{temperatureC}°C "
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "interface": "wlp3s0", // (Optional) To force the use of this interface
+        "interval": 10,
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        // "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        // "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+   //"custom/cmus": {
+   //     "format": " {}",
+   //     //"max-length": 15,
+   //     "interval": 1,
+   //     "exec": "pgrep cmus >> /dev/null && cmus-remote -C \"format_print '%t $(~/build/bash/timeconv.sh $(cmus-remote -Q | grep position | grep -o [0-9]*))/%d'\"", // artist - title
+   //     "exec-if": "pgrep cmus",
+   //     "on-click": "cmus-remote -u",                        //toggle pause
+   //     "on-click-right": "cmus-remote -C q",
+   //     "escape": true                                       //handle markup entities
+   //}, 
+    "disk": {
+        "interval": 30,
+        "format": "{free} ",
+        "path": "/"
+    }
+
+}
+
