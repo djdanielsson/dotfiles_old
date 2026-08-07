@@ -13,11 +13,6 @@ exclude_paths:
   - '.ansible-lint.yml'
   - '.yaml-lint.yml'
 
-########################
-# Make output parsable #
-########################
-parseable: true
-
 #######################
 # Set output to quiet #
 #######################
