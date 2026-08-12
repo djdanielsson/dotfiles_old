@@ -1,6 +1,6 @@
 ---
 # tasks file for base
-- include: fedora.yml
+  - include_tasks: fedora.yml
   when: ansible_distribution == "Fedora"
 
 - name: Install the latest packages
