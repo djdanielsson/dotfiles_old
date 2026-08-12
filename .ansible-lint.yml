@@ -37,6 +37,10 @@ skip_list:
   - 'package-latest' # Allow newest package version
   - 'yaml' # skip yaml and check that with yaml lint itself
   - 'var-naming[no-role-prefix]' # Allow non-prefixed role vars
+  - 'var-naming' # Allow non-standard variable names
+  - 'no-free-form' # Allow free-form comparisons
+  - 'risky-file-permissions' # Allow default permissions
+  - 'fqcn[action-core]' # Allow short include_tasks form
 
 ##################
 # Tags to follow #
