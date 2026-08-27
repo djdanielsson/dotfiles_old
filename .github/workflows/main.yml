@@ -29,7 +29,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Ansible Lint
-        uses: ansible/ansible-lint@v26.6.0
+        uses: ansible/ansible-lint@v26.8.0
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
